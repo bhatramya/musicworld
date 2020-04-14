@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title>Music world</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+   
+   <div id="demo" >
+    <h2 style="color:#900c3f" align="center"><b>MUSIC WORLD</b></h2>
+    <p align="center" style="color: #511845"><i>Get information of Music from different parts of the world!</i></p>
+</div>
+
+    <div id="map"></div>
+    <script>
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+function initMap() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map.setTilt(50);
+        
+    // Multiple markers location, latitude, and longitude
+    var markers = [
+        ['Salzburg, Austria', 47.804323, 13.061846],
+        ['Chennai, India', 13.072792, 80.169136],
+        ['Cape Town, South Africa', -33.672070, 18.505021],
+        ['Bogota, Colombia', 4.762617, -74.077777],
+        ['Los Angeles, USA', 34.050887, -118.249727],
+        ['Sydney, Australia', -33.870733, 151.217577]
+    ];
+                        
+    // Info window content
+    var infoWindowContent = [
+        ['<div id="content">'+
+            '<div id="first">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Salzburg, Austria</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Salzburg</b>, is an Austrian city on the border of Germany, ' +
+            'with views of the <b>Eastern Alps</b>. The city is divided by the Salzach River, with medieval and '+
+            'baroque buildings of the pedestrian '+
+            '<b>Altstadt</b> (Old City) on its left bank, facing the 19th-century <b>Neustadt</b> (New City) on its right. '+
+            'The Altstadt birthplace of famed composer <b>Mozart</b> is preserved as a museum displaying his childhood '+
+            'instruments.</p>'+
+            '<p>Learn more about Mozart here, <a href="https://sites.google.com/view/musicworldeuropemozart/home">'+
+            'https://sites.google.com/view/musicworldeuropemozart/home</a> '+
+            '.</p>'+
+            '</div>'+
+            '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Chennai, India</h3>' +
+        '<p><b>Chennai</b>, on the Bay of Bengal in eastern India, is the capital of the state of <b>Tamil Nadu</b>. The greatest concentration of <b>Carnatic musicians</b> is to be found in the city of Chennai. Various Carnatic music festivals are held throughout India and abroad, including the <b>Madras Music Season</b>, which has been considered to be one of the largest cultural events.</p>' +
+        '<p>Learn more about Carnatic music here, <a href="https://sites.google.com/view/musicworldasiacarnaticmusic/home">'+
+            'https://sites.google.com/view/musicworldasiacarnaticmusic/home</a> '+
+            '.</p>'+
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Cape Town, South Africa</h3>' +
+        '<p><b>Cape Town</b> is a port city on <b>South Africa’s</b> southwest coast, on a peninsula beneath the imposing Table Mountain. This city is well known for restaurants with live African music. <b>African music</b> is a tradition mainly played at gatherings at special occasions the traditional music of Africa, and is historically ancient, rich and diverse, with different regions and nations of Africa having many distinct musical traditions.</p>' +
+        '<p>Learn more about African music here, <a href="https://sites.google.com/view/musicworldafricageneral/home">'+
+            'https://sites.google.com/view/musicworldafricageneral/home</a> '+
+            '.</p>'+
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Bogota, Colombia</h3>' +
+        '<p><b>Bogotá</b> is <b>Colombia’s</b> sprawling, high-altitude capital. Colombia is known as <b>"The land of a thousand rhythms"</b> but actually holds over 1,025 folk rhythms. Some of the best known genres are cumbia and vallenato. Many famous Latin music artists are from this place.</p>' +
+        '<p>Learn more about Latin music here, <a href="https://sites.google.com/view/musicworldsouthamericageneral/home">'+
+            'https://sites.google.com/view/musicworldsouthamericageneral/home</a> '+
+            '.</p>'+
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Los Angeles, USA</h3>' +
+        '<p><b>Los Angeles</b> is a sprawling Southern California city and the center of the nation’s film and television industry. <b>Pop music</b> is a genre of popular music that originated in its modern forms in the US and the UK during the mid-1950s. Los Angeles has always been a hub for music-making, but more and more, it is the central place where pop is made.</p>' +
+        '<p>Learn more about Pop music here, <a href="https://sites.google.com/view/musicworldnorthamericapop/home">'+
+            'https://sites.google.com/view/musicworldnorthamericapop/home</a> '+
+            '.</p>'+
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Sydney, Australia</h3>' +
+        '<p><b>Sydney</b>, capital of New South Wales and one of Australia\'s largest cities, is best known for its Sydney Opera House. Sydney is also famous for its <b>rock scene</b>, boasting such names as The Celibate Rifles, indie rockers The Clouds, The Vines and The Crystal Set, to <b>electronic music pioneers</b> Severed Heads, Single Gun Theory, The Lab, Itch-E and Scratch-E and local favourites Sneaky Sound System.</p>' +
+        '<p>Learn more about Australian music here, <a href="https://sites.google.com/view/musicworldaustraliagen/home">'+
+            'https://sites.google.com/view/musicworldaustraliagen/home</a> '+
+            '.</p>'+
+        '</div>']
+    ];
+        
+    // Add multiple markers to map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Place each marker on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Add info window to marker    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+                
+            }
+        })(marker, i));
+
+        // Center the map to fit all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Set zoom level
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(2.5);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}
+// Load initialize function
+google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqf_ezb69aYgLh6zQNnD3LMYSi_Yq3M5s&callback=initMap">
+    </script>
+  </body>
+</html>
